@@ -1,3 +1,3 @@
 # GraphicsInJavaZad1
 
-Zadanie pierwsze
+Zadanie drugie

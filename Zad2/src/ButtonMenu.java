@@ -74,7 +74,9 @@ public class ButtonMenu extends JButton implements ActionListener {
             nameOfImage = SaveOpenImage.getFilename();
         }
         else if (source == openEditedImaage){
-            SaveOpenImage.loadFile();
+            imagePanel.arrayListMyShape.clear();
+            imagePanel.arrayListMyShape = SaveOpenImage.loadFile(imagePanel);
+            imagePanel.repaint();
         }
     }
 

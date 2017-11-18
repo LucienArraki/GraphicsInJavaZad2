@@ -32,6 +32,17 @@ public class MyShape {
         this.imagePanel = imagePanel;
     }
 
+    public MyShape(Point xy1, Point xy2, String sketch, Object color, ImagePanel imagePanel, int id) {
+        this.xy1 = xy1;
+        this.xy2 = xy2;
+        height = (int) Math.abs(xy1.getY() - xy2.getY());
+        width = (int) Math.abs(xy1.getX() - xy2.getX());
+        this.sketch = sketch;
+        this.color = (Color) color;
+        this.imagePanel = imagePanel;
+        this.id = id;
+    }
+
     public MyShape(MousePanel mouse, String sketch, Object color, ImagePanel imagePanel) {
         this.points = mouse.points;
         this.sketch = sketch;
@@ -65,8 +76,8 @@ public class MyShape {
     }
 
     public String toSerializableString() {
-        String out = sketch + "; " + color + "; " + id + "; ";
-        out += "x: " + xy1 + " ;y: " + xy2;
+        String out = sketch + ";" + color.getRed() + "/" + color.getGreen() + "/" + color.getBlue() + ";" + id + "; ";
+        out += "x: " + xy1.getX() + "," + xy1.getY() + " ;y: " + xy2.getX() + "," + xy2.getY();
         return out;
     }
 }

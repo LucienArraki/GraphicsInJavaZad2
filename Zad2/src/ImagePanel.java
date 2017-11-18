@@ -14,12 +14,14 @@ public class ImagePanel extends JPanel {
     private BufferedImage image;    //Obraz
     private MousePanel mousePanel;  //Panel myszy
     protected ArrayList<MyShape> arrayListMyShape;
+    private String nameOfImage;
 
     public ImagePanel() {
     }
 
-    public ImagePanel(ButtonMenu buttonMenu, String name) {
-        arrayListMyShape = new ArrayList<MyShape>();
+    public ImagePanel(ButtonMenu buttonMenu, String name, ArrayList<MyShape> arrayListMyShape) {
+        this.arrayListMyShape = arrayListMyShape;
+        System.out.println(name);
 
         //Nasluchiwanie na myszy
         mousePanel = new MousePanel(buttonMenu, this);
@@ -27,10 +29,10 @@ public class ImagePanel extends JPanel {
         addMouseMotionListener(mousePanel);
 
         //Wczytanie obrazu
-        File imageFile = new File(name);
+        File imageFile = new File(name + ".jpg");
         try {
             URL myURL = new URL("http://www.komputerswiat.pl/media/2015/320/4096559/emocjep.jpg");
-            image = ImageIO.read(myURL);
+            image = ImageIO.read(new File(name));
 
         } catch (IOException e) {
             System.err.println("Blad odczytu obrazka");
@@ -50,5 +52,11 @@ public class ImagePanel extends JPanel {
             g2d.setColor(shape.color);
             g2d.draw(shape.figureSketch());
         }
+    }
+
+    public void updateImage(BufferedImage img){
+        image = img;
+        this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+        this.repaint();
     }
 }

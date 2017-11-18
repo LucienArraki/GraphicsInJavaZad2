@@ -14,14 +14,28 @@ public class ButtonMenu extends JButton implements ActionListener {
 
     private JButton saveImage;
     private JButton openImage;
+    private JButton openEditedImaage;
     private JComboBox sketchChange;
     private JComboBox colorChange;
+    protected String nameOfImage;
+    private Panel panel;
+    private ImagePanel imagePanel;
 
-    public ButtonMenu() {
+    protected ArrayList<MyShape> arrayListMyShape;
+
+    public ButtonMenu(ArrayList<MyShape> arrayListMyShape, Panel panel) {
+        this.arrayListMyShape = arrayListMyShape;
+        this.nameOfImage = panel.nameOfImage;
+        this.panel = panel;
+        //Panele
+        imagePanel = new ImagePanel(this, nameOfImage, arrayListMyShape);
+
+        panel.ramka.add(imagePanel);
+
         //Nazwy przycisków
-        saveImage = new JButton("Otworz obraz");
-        openImage = new JButton("Zapisz obraz");
-
+        saveImage = new JButton("Zapisz obraz");
+        openImage = new JButton("Otworz obraz");
+        openEditedImaage = new JButton("Otworz edytowany obraz");
         //Listy figur
         Color color[] = {Color.BLACK, Color.BLUE, Color.RED, Color.PINK, Color.GREEN, Color.CYAN, Color.YELLOW, Color.WHITE};
         String figures[] = {"Kwadrat", "Kolo", "Wielokat"};
@@ -35,12 +49,14 @@ public class ButtonMenu extends JButton implements ActionListener {
         openImage.addActionListener(this);
         sketchChange.addActionListener(this);
         colorChange.addActionListener(this);
+        openEditedImaage.addActionListener(this);
 
         setLayout(new FlowLayout());
         add(saveImage);
         add(openImage);
         add(sketchChange);
         add(colorChange);
+        add(openEditedImaage);
     }
 
     @Override
@@ -48,12 +64,18 @@ public class ButtonMenu extends JButton implements ActionListener {
         // TODO Auto-generated method stub
         Object source = arg0.getSource();
 
-        if (source == saveImage){
-
+        if (source == saveImage) {
+            SaveOpenImage.saveFile(arrayListMyShape, nameOfImage);
         }
-
-        else if (source == openImage)
-            setBackground(Color.RED);
+        else if (source == openImage) {
+            System.out.println(nameOfImage);
+            imagePanel.updateImage(SaveOpenImage.loadImage());
+            imagePanel.arrayListMyShape.clear();
+            nameOfImage = SaveOpenImage.getFilename();
+        }
+        else if (source == openEditedImaage){
+            SaveOpenImage.loadFile();
+        }
     }
 
     public JComboBox getSketchChange() {

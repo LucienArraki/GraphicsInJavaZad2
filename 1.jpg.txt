@@ -1,0 +1,3 @@
+1.jpg
+Kwadrat; java.awt.Color[r=0,g=0,b=0]; 2; x: java.awt.Point[x=165,y=76] ;y: java.awt.Point[x=369,y=237]
+Kwadrat; java.awt.Color[r=0,g=0,b=0]; 1; x: java.awt.Point[x=250,y=57] ;y: java.awt.Point[x=495,y=153]

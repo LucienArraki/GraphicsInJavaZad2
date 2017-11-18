@@ -42,7 +42,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
     public void mouseReleased(MouseEvent e) {   //Puszczenie
         MyShape myShape = new MyShape(point, new Point(e.getX(), e.getY()),
                 buttonMenu.getSketchChange().getSelectedItem().toString(),
-                buttonMenu.getColorChange().getSelectedItem());
+                buttonMenu.getColorChange().getSelectedItem(), imagePanel);
         arrayListMyShape.add(myShape);      //Tworzenie tablicy figur narysowanych
         imagePanel.repaint();
     }
@@ -63,7 +63,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
                 MyShape myShape = new MyShape(this,
                         buttonMenu.getSketchChange().getSelectedItem().toString(),
-                        buttonMenu.getColorChange().getSelectedItem());
+                        buttonMenu.getColorChange().getSelectedItem(), imagePanel);
                 arrayListMyShape.add(myShape);
                 imagePanel.repaint();
             } else

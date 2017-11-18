@@ -1,0 +1,2 @@
+2.jpg
+Kwadrat java.awt.Color[r=0,g=0,b=0] 1; x: 269.0,132.0 y: 500.0,321.0

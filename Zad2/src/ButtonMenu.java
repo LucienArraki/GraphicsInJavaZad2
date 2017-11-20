@@ -74,9 +74,11 @@ public class ButtonMenu extends JButton implements ActionListener {
             nameOfImage = SaveOpenImage.getFilename();
         }
         else if (source == openEditedImaage){
-            imagePanel.arrayListMyShape.clear();
-            imagePanel.arrayListMyShape = SaveOpenImage.loadFile(imagePanel);
+            ArrayList<MyShape> array = new ArrayList<MyShape>();
+            array = SaveOpenImage.loadFile(imagePanel);
+            imagePanel.arrayListMyShape = array;
             imagePanel.repaint();
+
         }
     }
 
@@ -86,22 +88,6 @@ public class ButtonMenu extends JButton implements ActionListener {
 
     public JComboBox getColorChange() {
         return colorChange;
-    }
-
-    public static boolean saveFile(ArrayList<MyShape> selections){
-        try {
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter("save.txt"));
-            for(MyShape selection : selections){
-                writer.write(selection.toSerializableString() + "\n");
-            }
-            writer.close();
-            return true;
-        }
-        catch(IOException e){
-            e.printStackTrace();
-            return false;
-        }
     }
 }
 

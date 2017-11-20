@@ -59,4 +59,11 @@ public class ImagePanel extends JPanel {
         this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
         this.repaint();
     }
+
+    public void update(ArrayList<MyShape> selections){
+        arrayListMyShape.clear();
+        this.repaint();
+        arrayListMyShape = selections;
+        repaint();
+    }
 }

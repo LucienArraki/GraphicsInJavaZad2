@@ -74,7 +74,6 @@ public class SaveOpenImage {
                 String[] tab = s.split(";");
 
                 loadedList.add(stringToShape(imagePanel, tab));
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,17 +88,19 @@ public class SaveOpenImage {
         int r = Integer.parseInt(split[0]);
         int g= Integer.parseInt(split[1]);
         int b = Integer.parseInt(split[2]);
-        Color color = new Color(r,g,b); //Color
+        Color color = new Color(r,g,b);
 
         int id = Integer.parseInt(tab[2]);  //ID
 
         //Point
         split = tab[3].substring(4).split(",");
         Point x = new Point((int) Double.parseDouble(split[0]), (int) Double.parseDouble(split[1]));
-        split = tab[4].substring(4).split(",");
+        split = tab[4].substring(3).split(",");
         Point y = new Point((int) Double.parseDouble(split[0]), (int) Double.parseDouble(split[1]));
 
-        MyShape myShape = new MyShape(x,y,sketch,color,imagePanel,id);
+        MyShape myShape = new MyShape(x,y,sketch,color,imagePanel);
+        myShape.figureSketch();
+        imagePanel.repaint();
         return myShape;
     }
 }

@@ -15,7 +15,7 @@ public class MyShape {
     private ArrayList<Point> points;
     private boolean isPolygon = false;
 
-    private String sketch;
+    public String sketch;
     protected Color color;
     int polygonNumer = 0;
 
@@ -52,10 +52,10 @@ public class MyShape {
     }
 
     protected Shape figureSketch() {
-        if (sketch == "Kolo") {
+        if (sketch.toString().equals("Kolo")) {
             id++;
             return new Ellipse2D.Double(xy1.getX(), xy1.getY(), width, height);
-        } else if (sketch == "Wielokat" && isPolygon) {
+        } else if (sketch.toString().equals("Wielokat") && isPolygon) {
             int[] xpoint = new int[points.size()];
             int[] ypoint = new int[points.size()];
             int pom = 0;
@@ -68,7 +68,7 @@ public class MyShape {
             pom = polygonNumer;
             id++;
             return new Polygon(xpoint, ypoint, points.size());
-        } else if (sketch == "Kwadrat") {
+        } else if (sketch.toString().equals("Kwadrat")) {
             id++;
             return new Rectangle2D.Double(xy1.getX(), xy1.getY(), width, height);
         }

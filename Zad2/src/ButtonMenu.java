@@ -80,11 +80,10 @@ public class ButtonMenu extends JButton implements ActionListener {
             panel.ramka.pack();
         }
         else if (source == openEditedImaage){
-            ArrayList<MyShape> array = new ArrayList<MyShape>();
-            array = SaveOpenImage.loadFile(imagePanel);
-            imagePanel.arrayListMyShape = array;
+            imagePanel.arrayListMyShape = SaveOpenImage.loadFile(imagePanel);
             imagePanel.repaint();
             listPanel.setList(arrayListMyShape);
+            panel.ramka.pack();
         }
     }
 

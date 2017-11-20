@@ -9,7 +9,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
 
     private ButtonMenu buttonMenu;      //Panel przycisków
     private Point point;
-    private ArrayList<MyShape> arrayListMyShape;
+    protected ArrayList<MyShape> arrayListMyShape;
     private ImagePanel imagePanel;
     protected ArrayList<Point> points;
 

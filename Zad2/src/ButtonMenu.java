@@ -20,8 +20,8 @@ public class ButtonMenu extends JButton implements ActionListener {
     protected String nameOfImage;
     private Panel panel;
     private ImagePanel imagePanel;
-
     protected ArrayList<MyShape> arrayListMyShape;
+    protected SelectionListPanel listPanel;
 
     public ButtonMenu(ArrayList<MyShape> arrayListMyShape, Panel panel) {
         this.arrayListMyShape = arrayListMyShape;
@@ -30,7 +30,11 @@ public class ButtonMenu extends JButton implements ActionListener {
         //Panele
         imagePanel = new ImagePanel(this, nameOfImage, arrayListMyShape);
 
-        panel.ramka.add(imagePanel);
+        listPanel = new SelectionListPanel(imagePanel);
+        listPanel.setList(arrayListMyShape);
+
+        panel.ramka.add(imagePanel, BorderLayout.CENTER);
+        panel.ramka.add(new JScrollPane(listPanel) , BorderLayout.WEST);
 
         //Nazwy przycisków
         saveImage = new JButton("Zapisz obraz");
@@ -68,17 +72,19 @@ public class ButtonMenu extends JButton implements ActionListener {
             SaveOpenImage.saveFile(arrayListMyShape, nameOfImage);
         }
         else if (source == openImage) {
+            listPanel.setList(arrayListMyShape);
             System.out.println(nameOfImage);
             imagePanel.updateImage(SaveOpenImage.loadImage());
-            imagePanel.arrayListMyShape.clear();
+            imagePanel.arrayListMyShape.removeAll(arrayListMyShape);
             nameOfImage = SaveOpenImage.getFilename();
+            panel.ramka.pack();
         }
         else if (source == openEditedImaage){
             ArrayList<MyShape> array = new ArrayList<MyShape>();
             array = SaveOpenImage.loadFile(imagePanel);
             imagePanel.arrayListMyShape = array;
             imagePanel.repaint();
-
+            listPanel.setList(arrayListMyShape);
         }
     }
 

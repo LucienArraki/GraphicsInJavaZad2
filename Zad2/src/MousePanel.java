@@ -45,6 +45,7 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
                 buttonMenu.getColorChange().getSelectedItem(), imagePanel);
         arrayListMyShape.add(myShape);      //Tworzenie tablicy figur narysowanych
         imagePanel.repaint();
+        buttonMenu.listPanel.setList(arrayListMyShape);
     }
 
     @Override
@@ -61,17 +62,15 @@ public class MousePanel extends JPanel implements MouseListener, MouseMotionList
                     + Math.pow(e.getY() - points.get(0).getY(), 2)) < 50) {
                 System.out.println(points.size());
 
-                MyShape myShape = new MyShape(this,
+                MyShape myShape = new MyShape(points,
                         buttonMenu.getSketchChange().getSelectedItem().toString(),
                         buttonMenu.getColorChange().getSelectedItem(), imagePanel);
                 arrayListMyShape.add(myShape);
                 imagePanel.repaint();
             } else
                 points.add(new Point(e.getX(), e.getY()));
-
         }
     }
-
 
     @Override
     public void mouseEntered(MouseEvent e) {

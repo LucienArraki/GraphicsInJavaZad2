@@ -15,13 +15,14 @@ public class ImagePanel extends JPanel {
     private MousePanel mousePanel;  //Panel myszy
     protected ArrayList<MyShape> arrayListMyShape;
     private String nameOfImage;
+    protected ButtonMenu buttonMenu;
 
     public ImagePanel() {
     }
 
     public ImagePanel(ButtonMenu buttonMenu, String name, ArrayList<MyShape> arrayListMyShape) {
         this.arrayListMyShape = arrayListMyShape;
-        System.out.println(name);
+        this.buttonMenu = buttonMenu;
 
         //Nasluchiwanie na myszy
         mousePanel = new MousePanel(buttonMenu, this);
@@ -29,9 +30,7 @@ public class ImagePanel extends JPanel {
         addMouseMotionListener(mousePanel);
 
         //Wczytanie obrazu
-        File imageFile = new File(name + ".jpg");
         try {
-            URL myURL = new URL("http://www.komputerswiat.pl/media/2015/320/4096559/emocjep.jpg");
             image = ImageIO.read(new File(name));
 
         } catch (IOException e) {
@@ -56,14 +55,8 @@ public class ImagePanel extends JPanel {
 
     public void updateImage(BufferedImage img){
         image = img;
-        this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+        Dimension dimension = new Dimension(image.getWidth(), image.getHeight());
+        setPreferredSize(dimension);
         this.repaint();
-    }
-
-    public void update(ArrayList<MyShape> selections){
-        arrayListMyShape.clear();
-        this.repaint();
-        arrayListMyShape = selections;
-        repaint();
     }
 }

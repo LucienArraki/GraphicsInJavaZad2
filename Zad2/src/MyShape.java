@@ -43,8 +43,9 @@ public class MyShape {
         this.id = id;
     }
 
-    public MyShape(MousePanel mouse, String sketch, Object color, ImagePanel imagePanel) {
-        this.points = mouse.points;
+    public MyShape(ArrayList<Point> points, String sketch, Object color, ImagePanel imagePanel) {
+        this.points = new ArrayList<Point>();
+        this.points = points;
         this.sketch = sketch;
         this.color = (Color) color;
         isPolygon = true;
@@ -56,10 +57,11 @@ public class MyShape {
             id++;
             return new Ellipse2D.Double(xy1.getX(), xy1.getY(), width, height);
         } else if (sketch.toString().equals("Wielokat") && isPolygon) {
-            int[] xpoint = new int[points.size()];
-            int[] ypoint = new int[points.size()];
+            int size = points.size();
+            int[] xpoint = new int[size];
+            int[] ypoint = new int[size];
             int pom = 0;
-            for (int i = 0; i < points.size() - pom; i++) {
+            for (int i = 0; i < size - pom; i++) {
                 xpoint[i] = (int) points.get(i + pom).getX();
                 ypoint[i] = (int) points.get(i + pom).getY();
                 polygonNumer++;
@@ -78,6 +80,12 @@ public class MyShape {
     public String toSerializableString() {
         String out = sketch + ";" + color.getRed() + "/" + color.getGreen() + "/" + color.getBlue() + ";" + id + "; ";
         out += "x: " + xy1.getX() + "," + xy1.getY() + " ;y: " + xy2.getX() + "," + xy2.getY();
+        return out;
+    }
+
+    @Override
+    public String toString() {
+        String out = sketch + " " + xy1.getX() + "x" + xy1.getY();
         return out;
     }
 }
